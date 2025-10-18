@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gas_man_app/src/theme/app_colors.dart';
+import 'package:gas_man_app/src/ui/address/address_screen.dart';
+import 'package:gas_man_app/src/ui/customer/customer_screen.dart';
+import 'package:gas_man_app/src/ui/dashboard/dashboard_screen.dart';
+import 'package:gas_man_app/src/ui/gas_pipe_sizing/gas_pipe_sizing_screen.dart';
+import 'package:gas_man_app/src/ui/gas_rate_calculator/gas_rate_calculator_screen.dart';
+import 'package:gas_man_app/src/ui/help/help_screen.dart';
+import 'package:gas_man_app/src/ui/job/job_screen.dart';
+import 'package:gas_man_app/src/ui/record/record_screen.dart';
+import 'package:gas_man_app/src/ui/settings/settings_screen.dart';
 
 class NavigationShell extends StatefulWidget {
   const NavigationShell({super.key});
@@ -26,18 +35,18 @@ class _NavigationShellState extends State<NavigationShell> {
     'Help',
   ];
   final List<Widget> pages = const [
-    Placeholder(), // Dashboard (Part 2)
-    Placeholder(), // Records (Part 2)
+    DashboardScreen(), // Dashboard (Part 2)
+    RecordsScreen(), // Records (Part 2)
     Placeholder(), // Invoices (Part 2)
-    Placeholder(), // Jobs (Part 2)
-    Placeholder(), // Customers (Part 2)
-    Placeholder(), // Addresses (Part 2)
-    Placeholder(), // Find Merchants (Part 4)
-    Placeholder(), // Gas Rate (Part 3)
-    Placeholder(), // Pipe Sizing (Part 3)
+    JobsScreen(), // Jobs (Part 2)
+    CustomersScreen(), // Customers (Part 2)
+    AddressesScreen(), // Addresses (Part 2)
+    FindMerchantsScreen(), // Find Merchants (Part 4)
+    GasRateCalculatorScreen(), // Gas Rate (Part 3)
+    GasPipeSizingScreen(), // Pipe Sizing (Part 3)
     Placeholder(), // Ventilation (Part 3)
-    Placeholder(), // Settings (Part 4)
-    Placeholder(), // Help (Part 4)
+    SettingsScreen(), // Settings (Part 4)
+    HelpScreen(), // Help (Part 4)
   ];
 
   @override
