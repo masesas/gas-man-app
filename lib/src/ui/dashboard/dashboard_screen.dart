@@ -1,111 +1,140 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gas_man_app/src/ui/find_merchants_screen.dart';
+import 'package:gas_man_app/src/ui/invoices_screen.dart';
+import 'package:gas_man_app/src/ui/address/address_screen.dart';
+import 'package:gas_man_app/src/ui/gas_certificate_flow/customer_page.dart';
+import 'package:gas_man_app/src/ui/gas_certificate_flow/jobs_page.dart';
+import 'package:gas_man_app/src/ui/gas_pipe_sizing/gas_pipe_sizing_screen.dart';
+import 'package:gas_man_app/src/ui/gas_rate_calculator/gas_rate_calculator_screen.dart';
+import 'package:gas_man_app/src/ui/record/record_screen.dart';
+import 'package:gas_man_app/src/ui/settings/settings_screen.dart';
+import 'package:gas_man_app/src/ui/ventilation_screen.dart';
+import 'package:gas_man_app/src/ui/warning_notice_screen.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+class DashboardPage extends StatelessWidget {
+  final Color tealColor = const Color(0xFF007B7B);
+  final Color amberColor = const Color(0xFFFFB300);
+  final Color backgroundColor = const Color(0xFFF5F5F5);
+
+  final List<Map<String, dynamic>> tools = [];
+
+  DashboardPage({super.key}) {
+    tools.addAll([
+      {'icon': FontAwesomeIcons.fileCirclePlus, 'title': 'New Record', 'route': const RecordsScreen()},
+      {'icon': FontAwesomeIcons.fileInvoice, 'title': 'Invoices', 'route': const InvoicesScreen()},
+      {'icon': FontAwesomeIcons.briefcase, 'title': 'Jobs', 'route': const JobsPage()},
+      {'icon': FontAwesomeIcons.user, 'title': 'Customers', 'route': const CustomerPage()},
+      {'icon': FontAwesomeIcons.locationDot, 'title': 'Addresses', 'route': const AddressesScreen()},
+      {'icon': FontAwesomeIcons.shop, 'title': 'Find Merchants', 'route': const FindMerchantsScreen()},
+      {'icon': FontAwesomeIcons.piedPiper, 'title': 'Gas Pipe Sizing', 'route': const GasPipeSizingScreen()},
+      {'icon': FontAwesomeIcons.wind, 'title': 'Ventilation', 'route': const VentilationScreen()},
+      {'icon': FontAwesomeIcons.triangleExclamation, 'title': 'Warning Notices', 'route': const WarningNoticeScreen()},
+      {'icon': FontAwesomeIcons.gaugeHigh, 'title': 'Gas Rate Calculator', 'route': const GasRateCalculatorScreen()},
+      {'icon': FontAwesomeIcons.gear, 'title': 'Settings', 'route': const SettingsScreen()},
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const Text(
-          'Welcome to The Gas Man App',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        GridView.count(
-          crossAxisCount: 2,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _DashboardTile(
-              icon: Icons.note_add,
-              label: 'New Record',
-              color: Colors.teal.shade400,
-              onTap: () => _nav(context, 'Records'),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Upcoming Jobs",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text("No jobs currently scheduled.",
+                      style: TextStyle(color: Colors.black54)),
+                ],
+              ),
             ),
-            _DashboardTile(
-              icon: Icons.receipt_long,
-              label: 'Invoices',
-              color: Colors.amber.shade400,
-              onTap: () => _nav(context, 'Invoices'),
+            const SizedBox(height: 24),
+
+            const Text(
+              "Welcome to The Gas Man App",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            _DashboardTile(
-              icon: Icons.person,
-              label: 'Customers',
-              color: Colors.teal.shade300,
-              onTap: () => _nav(context, 'Customers'),
-            ),
-            _DashboardTile(
-              icon: Icons.store_mall_directory,
-              label: 'Merchants',
-              color: Colors.amber.shade300,
-              onTap: () => _nav(context, 'Find Merchants'),
+            const SizedBox(height: 16),
+
+            // Grid of Tools
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: tools.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+              ),
+              itemBuilder: (context, index) {
+                final item = tools[index];
+                final bool isAmber =
+                    index == 1 || index == 9; // Highlight some boxes
+
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => item['route']),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: isAmber ? amberColor : tealColor,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 6,
+                          offset: const Offset(2, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(item['icon'], color: Colors.white, size: 36),
+                        const SizedBox(height: 10),
+                        Text(
+                          item['title'],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ],
-        ),
-        const SizedBox(height: 16),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Upcoming Jobs',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                SizedBox(height: 8),
-                Text('No jobs currently scheduled.'),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  void _nav(BuildContext context, String title) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Navigate to $title')));
-  }
-}
-
-class _DashboardTile extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _DashboardTile({
-    required this.icon,
-    required this.label,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: color,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, color: Colors.white, size: 36),
-              const SizedBox(height: 6),
-              Text(
-                label,
-                style: const TextStyle(color: Colors.white, fontSize: 14),
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 import 'package:gas_man_app/src/ui/installation_checklist_pdf.dart';
 import 'package:printing/printing.dart';
-import 'package:signature/signature.dart';
 
 class InstallationCommissioningChecklistPage extends StatefulWidget {
   const InstallationCommissioningChecklistPage({super.key});
@@ -220,84 +220,6 @@ class PDFPreviewPage extends StatelessWidget {
         canChangePageFormat: false,
         canChangeOrientation: false,
         pdfFileName: "Installation_Checklist.pdf",
-      ),
-    );
-  }
-}
-
-// SIGNATURE PAGE (after PDF)
-class SignaturePage extends StatefulWidget {
-  const SignaturePage({super.key});
-  
-  @override
-  State<SignaturePage> createState() => SignaturePageState();
-}
-
-class SignaturePageState extends State<SignaturePage> {
-  final SignatureController _controller = SignatureController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:
-      AppBar(title: const Text("Customer Signature"), backgroundColor: Colors.teal),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(labelText: "Date of Issue"),
-            ),
-            TextFormField(
-              decoration:
-              const InputDecoration(labelText: "Next Service Due Date"),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: "Customer Name"),
-            ),
-            const SizedBox(height: 20),
-            const Text("Customer Signature",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              height: 150,
-              child: Signature(
-                controller: _controller,
-                backgroundColor: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                buildButton("Home", Colors.teal, () {}),
-                buildButton("Save", Colors.green, () {}),
-                buildButton("Approve", Colors.amber, () {}),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildButton(String label, Color color, VoidCallback onPressed) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: color,
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-              padding: const EdgeInsets.symmetric(vertical: 14)),
-          onPressed: onPressed,
-          child: Text(label,
-              style: const TextStyle(fontSize: 16, color: Colors.white)),
-        ),
       ),
     );
   }

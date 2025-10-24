@@ -3,15 +3,15 @@ import 'package:gas_man_app/src/theme/app_colors.dart';
 import 'package:gas_man_app/src/ui/address/address_screen.dart';
 import 'package:gas_man_app/src/ui/customer/customer_screen.dart';
 import 'package:gas_man_app/src/ui/dashboard/dashboard_screen.dart';
+import 'package:gas_man_app/src/ui/find_merchants_screen.dart';
 import 'package:gas_man_app/src/ui/gas_pipe_sizing/gas_pipe_sizing_screen.dart';
 import 'package:gas_man_app/src/ui/gas_rate_calculator/gas_rate_calculator_screen.dart';
 import 'package:gas_man_app/src/ui/help/help_screen.dart';
 import 'package:gas_man_app/src/ui/job/job_screen.dart';
 import 'package:gas_man_app/src/ui/record/record_screen.dart';
 import 'package:gas_man_app/src/ui/settings/settings_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/invoices/invoices_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/merchants/find_merchants_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/ventilation/ventilation_screen.dart';
+import 'package:gas_man_app/src/ui/invoices_screen.dart';
+import 'package:gas_man_app/src/ui/ventilation_screen.dart';
 
 class NavigationShell extends StatefulWidget {
   const NavigationShell({super.key});
@@ -37,19 +37,19 @@ class _NavigationShellState extends State<NavigationShell> {
     'Settings',
     'Help',
   ];
-  final List<Widget> pages = const [
-    DashboardScreen(), // Dashboard
-    RecordsScreen(), // Records
-    InvoicesScreen(), // Invoices
-    JobsScreen(), // Jobs
-    CustomersScreen(), // Customers
-    AddressesScreen(), // Addresses
-    FindMerchantsScreen(), // Find Merchants
-    GasRateCalculatorScreen(), // Gas Rate
-    GasPipeSizingScreen(), // Pipe Sizing
-    VentilationScreen(), // Ventilation
-    SettingsScreen(), // Settings
-    HelpScreen(), // Help
+  final List<Widget> pages = [
+    DashboardPage(), // Dashboard
+    const RecordsScreen(), // Records
+    const InvoicesScreen(), // Invoices
+    const JobsScreen(), // Jobs
+    const CustomersScreen(), // Customers
+    const AddressesScreen(), // Addresses
+    const FindMerchantsScreen(), // Find Merchants
+    const GasRateCalculatorScreen(), // Gas Rate
+    const GasPipeSizingScreen(), // Pipe Sizing
+    const VentilationScreen(), // Ventilation
+    const SettingsScreen(), // Settings
+    const HelpScreen(), // Help
   ];
 
   @override

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gas_man_app/src/presentation/screens/invoices/invoices_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/merchants/find_merchants_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/ventilation/ventilation_screen.dart';
-import 'package:gas_man_app/src/presentation/screens/warning_notice/warning_notice_screen.dart';
+import 'package:gas_man_app/src/ui/find_merchants_screen.dart';
+import 'package:gas_man_app/src/ui/invoices_screen.dart';
+import 'package:gas_man_app/src/ui/ventilation_screen.dart';
 import 'package:gas_man_app/src/ui/address/address_screen.dart';
 import 'package:gas_man_app/src/ui/customer/customer_screen.dart';
 import 'package:gas_man_app/src/ui/gas_pipe_sizing/gas_pipe_sizing_screen.dart';
@@ -10,6 +9,7 @@ import 'package:gas_man_app/src/ui/gas_rate_calculator/gas_rate_calculator_scree
 import 'package:gas_man_app/src/ui/help/help_screen.dart';
 import 'package:gas_man_app/src/ui/record/record_screen.dart';
 import 'package:gas_man_app/src/ui/settings/settings_screen.dart';
+import 'package:gas_man_app/src/ui/warning_notice_screen.dart';
 
 import 'job/job_screen.dart';
 

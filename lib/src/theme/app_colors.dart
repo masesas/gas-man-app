@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const kTeal = Color(0xFF0E827C);
+const kAmber = Color(0xFFFFC970);
+const kText = Color(0xFF1D2A2A);
+
 class AppColors {
   AppColors._();
 
