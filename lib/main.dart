@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gas_man_app/src/app.dart';
+import 'package:gas_man_app/src/data/models/installation_checklist.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-// ===============================
-// THE GAS MAN APP — Part 1 of 4
-// ===============================
-// Created for: The Gas Man App
-// Description: Core Flutter structure, theme, splash screen, navigation shell
-// ==========================================
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(InstallationChecklistAdapter());
+  await Hive.openBox<InstallationChecklist>('checklists');
   runApp(const GasManApp());
 }
+

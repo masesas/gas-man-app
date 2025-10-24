@@ -33,7 +33,7 @@ class _GasPipeSizingScreenState extends State<GasPipeSizingScreen> {
         const SizedBox(height: 8),
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(labelText: 'Pipe Diameter'),
-          initialValue: pipeSize,
+          value: pipeSize,
           items: const [
             DropdownMenuItem(value: '15 mm', child: Text('15 mm')),
             DropdownMenuItem(value: '22 mm', child: Text('22 mm')),
@@ -161,7 +161,7 @@ class _VentilationCalculatorScreenState
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(labelText: 'Appliance Type'),
-          initialValue: applianceType,
+          value: applianceType,
           items: const [
             DropdownMenuItem(value: 'Room-Sealed', child: Text('Room-Sealed')),
             DropdownMenuItem(value: 'Open Flue', child: Text('Open Flue')),
@@ -220,75 +220,4 @@ class _VentilationCalculatorScreenState
   }
 }
 
-// ===============================
-// THE GAS MAN APP — Part 4 of 4
-// ===============================
-// Merchants, Settings, Help, Shared Helpers
-// =========================================
 
-// ---------------------------- FIND LOCAL MERCHANTS --------------------------
-class FindMerchantsScreen extends StatefulWidget {
-  const FindMerchantsScreen({super.key});
-
-  @override
-  State<FindMerchantsScreen> createState() => _FindMerchantsScreenState();
-}
-
-class _FindMerchantsScreenState extends State<FindMerchantsScreen> {
-  final TextEditingController postcodeController = TextEditingController();
-  List<Map<String, dynamic>> results = [];
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const Text(
-          'Find Local Merchants',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          controller: postcodeController,
-          decoration: InputDecoration(
-            labelText: 'Enter your postcode',
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: _findMerchants,
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        if (results.isEmpty)
-          const Text('Enter a postcode to find nearby merchants.'),
-        for (var r in results)
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.store),
-              title: Text(r['name']),
-              subtitle: Text('${r['distance']} miles away'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () =>
-                  SharedHelper.toast(context, 'Opening ${r['name']}...'),
-            ),
-          ),
-      ],
-    );
-  }
-
-  void _findMerchants() {
-    final pc = postcodeController.text.trim().toUpperCase();
-    if (pc.isEmpty) {
-      SharedHelper.toast(context, 'Please enter a postcode');
-      return;
-    }
-    // Mock result data for now
-    setState(() {
-      results = [
-        {'name': 'Wolseley Plumbing Supplies', 'distance': 1.2},
-        {'name': 'City Plumbing', 'distance': 2.4},
-        {'name': 'Screwfix Trade Counter', 'distance': 3.0},
-      ];
-    });
-  }
-}

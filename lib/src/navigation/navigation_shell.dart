@@ -9,6 +9,9 @@ import 'package:gas_man_app/src/ui/help/help_screen.dart';
 import 'package:gas_man_app/src/ui/job/job_screen.dart';
 import 'package:gas_man_app/src/ui/record/record_screen.dart';
 import 'package:gas_man_app/src/ui/settings/settings_screen.dart';
+import 'package:gas_man_app/src/presentation/screens/invoices/invoices_screen.dart';
+import 'package:gas_man_app/src/presentation/screens/merchants/find_merchants_screen.dart';
+import 'package:gas_man_app/src/presentation/screens/ventilation/ventilation_screen.dart';
 
 class NavigationShell extends StatefulWidget {
   const NavigationShell({super.key});
@@ -35,18 +38,18 @@ class _NavigationShellState extends State<NavigationShell> {
     'Help',
   ];
   final List<Widget> pages = const [
-    DashboardScreen(), // Dashboard (Part 2)
-    RecordsScreen(), // Records (Part 2)
-    Placeholder(), // Invoices (Part 2)
-    JobsScreen(), // Jobs (Part 2)
-    CustomersScreen(), // Customers (Part 2)
-    AddressesScreen(), // Addresses (Part 2)
-    FindMerchantsScreen(), // Find Merchants (Part 4)
-    GasRateCalculatorScreen(), // Gas Rate (Part 3)
-    GasPipeSizingScreen(), // Pipe Sizing (Part 3)
-    Placeholder(), // Ventilation (Part 3)
-    SettingsScreen(), // Settings (Part 4)
-    HelpScreen(), // Help (Part 4)
+    DashboardScreen(), // Dashboard
+    RecordsScreen(), // Records
+    InvoicesScreen(), // Invoices
+    JobsScreen(), // Jobs
+    CustomersScreen(), // Customers
+    AddressesScreen(), // Addresses
+    FindMerchantsScreen(), // Find Merchants
+    GasRateCalculatorScreen(), // Gas Rate
+    GasPipeSizingScreen(), // Pipe Sizing
+    VentilationScreen(), // Ventilation
+    SettingsScreen(), // Settings
+    HelpScreen(), // Help
   ];
 
   @override
